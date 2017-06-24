@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/back"
+    android:layout_height="match_parent"
+    tools:context="com.example.joginderpal.csbooksdetails.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/back_image"
+        android:layout_width="200dp"
+        android:transitionName="csBooks"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/cs"/>
+
+
+    <EditText
+        android:id="@+id/ed1"
+        android:layout_width="match_parent"
+        android:background="@drawable/ed_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Enter IT Books For Details"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:layout_below="@id/back_image"/>
+
+
+    <FrameLayout
+        android:id="@+id/frame_search"
+        android:layout_width="200dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_back"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ed1"
+        android:layout_marginTop="66dp">
+    <ImageButton
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="70dp"
+        android:background="@drawable/search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:text="Search" />
+
+    </FrameLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rel_price">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/frame_price_lay">
+        <ImageView
+            android:id="@+id/amazon_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/frame_price_lay"
+        android:id="@+id/rel_price_sub"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/fragment_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TITLE : "
+            android:textSize="20dp"
+            android:typeface="serif"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/fragment_title_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TITLE"
+            android:textSize="20dp"
+            android:typeface="serif"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="30dp"/>
+
+
+        <TextView
+            android:id="@+id/fragment_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRICE : "
+            android:textSize="20dp"
+            android:typeface="serif"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="100dp"/>
+
+        <TextView
+            android:id="@+id/fragment_price_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TITLE"
+            android:textSize="20dp"
+            android:typeface="serif"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="100dp"/>
+
+        <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+            android:id="@+id/google_progress"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            gpb:type="folding_circles"/>
+    </RelativeLayout>
+
+</RelativeLayout>
