@@ -26,11 +26,14 @@ import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.joginderpal.csbooksdetails.Data.Amazon;
+import com.example.joginderpal.csbooksdetails.Data.eBay;
 import com.example.joginderpal.csbooksdetails.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,9 +54,11 @@ public class fragment_price extends Fragment {
     RelativeLayout rel,rel1;
     TextView priceText,titleText;
     ProgressBar progressBar;
-
-    public fragment_price(int i) {
+    String search="";
+    String url;
+    public fragment_price(int i,String url) {
         this.i=i;
+        this.url=url;
     }
 
 
@@ -70,10 +75,11 @@ public class fragment_price extends Fragment {
         progressBar= (ProgressBar) v.findViewById(R.id.google_progress);
         title=new ArrayList<>();
         price=new ArrayList<>();
+
         switch (i){
             case 0:
 
-                Picasso.with(getActivity()).load("http://www.amazonsellerslawyer.com/wp-content/uploads/2016/03/amazon-claim.png").fit().into(amazonImage);
+                Picasso.with(getActivity()).load("http://www.pngpix.com/wp-content/uploads/2016/07/PNGPIX-COM-Amazon-Com-Logo-PNG-Transparent.png").fit().into(amazonImage);
                 Glide.with(getActivity()).load("http://www.amazonsellerslawyer.com/wp-content/uploads/2016/03/amazon-claim.png").bitmapTransform(new BlurTransformation(getActivity(),100)).into(new SimpleTarget<GlideDrawable>() {
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
@@ -82,38 +88,33 @@ public class fragment_price extends Fragment {
                         rel1.setBackground(resource);
                     }
                 });
+
+
                 break;
 
 
-//            case 1:
-//                Picasso.with(getActivity()).load("https://c.slashgear.com/wp-content/uploads/2017/01/ebay-sign-header.jpg").fit().into(amazonImage);
-//                Glide.with(getActivity()).load("https://c.slashgear.com/wp-content/uploads/2017/01/ebay-sign-header.jpg").bitmapTransform(new BlurTransformation(getActivity(),100)).into(new SimpleTarget<GlideDrawable>() {
-//                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-//                    @Override
-//                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-//                        rel.setBackground(resource);
-//                        rel1.setBackground(resource);
-//                    }
-//                });
-//
-//                titleText.setText("JAVA");
-//                priceText.setText("Rs.200");
-//
-//                break;
+            case 1:
+                Picasso.with(getActivity()).load("https://c.slashgear.com/wp-content/uploads/2017/01/ebay-sign-header.jpg").fit().into(amazonImage);
+                Glide.with(getActivity()).load("https://c.slashgear.com/wp-content/uploads/2017/01/ebay-sign-header.jpg").bitmapTransform(new BlurTransformation(getActivity(),100)).into(new SimpleTarget<GlideDrawable>() {
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        rel.setBackground(resource);
+                        rel1.setBackground(resource);
+                    }
+                });
+
+                break;
 
         }
 
-
-        new doit().execute();
+        new doit1().execute();
 
         return v;
     }
 
 
-    class doit extends AsyncTask<Void,Void,Void>{
-
-        String price="";
-        String title="";
+    class doit1 extends AsyncTask<Void,Void,Void>{
 
         @Override
         protected void onPreExecute() {
@@ -123,10 +124,9 @@ public class fragment_price extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            Amazon amazon=new Amazon("java");
             try {
-                price=amazon.getPrice();
-                title=amazon.getTitle();
+                Document doc= Jsoup.connect("http://it-ebooks.info"+url).get();
+                search=doc.getElementsByTag("h1").attr("itemprop","name").get(0).text();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -137,9 +137,60 @@ public class fragment_price extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            new doit().execute();
+        }
+
+    }
+
+
+    class doit extends AsyncTask<Void,Void,Void>{
+
+        String price="";
+        String title="";
+
+        String price1="";
+        String title1="";
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            Amazon amazon=new Amazon(search.replace(" ","+"));
+            try {
+                price=amazon.getPrice();
+                title=amazon.getTitle();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            eBay ebay=new eBay(search.replace(" ","+"));
+            try {
+                price1=ebay.getPrice();
+                title1=ebay.getTitle();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
             progressBar.setVisibility(View.INVISIBLE);
-            priceText.setText(price);
-            titleText.setText(title);
+            if (i==0){
+                priceText.setText(price);
+                titleText.setText(title);
+            }
+            else if (i==1){
+               priceText.setText(price1);
+                titleText.setText(title1);
+            }
         }
     }
 

@@ -27,8 +27,8 @@
             android:id="@+id/fragment_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TITLE : "
-            android:textSize="20dp"
+            android:text="Price: "
+            android:textSize="30dp"
             android:typeface="serif"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"/>
@@ -37,19 +37,19 @@
             android:id="@+id/fragment_title_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TITLE"
+            android:text="Wait"
             android:textSize="20dp"
             android:typeface="serif"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="40dp"/>
 
 
         <TextView
             android:id="@+id/fragment_price_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PRICE : "
-            android:textSize="20dp"
+            android:text="Title:  "
+            android:textSize="30dp"
             android:typeface="serif"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="100dp"/>
@@ -58,11 +58,11 @@
             android:id="@+id/fragment_price_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TITLE"
+            android:text="Wait"
             android:textSize="20dp"
             android:typeface="serif"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="110dp"/>
 
         <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
             android:id="@+id/google_progress"
@@ -70,6 +70,7 @@
             android:layout_height="50dp"
             android:layout_centerInParent="true"
             gpb:type="folding_circles"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

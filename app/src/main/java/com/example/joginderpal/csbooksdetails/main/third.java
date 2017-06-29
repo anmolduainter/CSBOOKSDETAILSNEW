@@ -182,7 +182,7 @@ public class third extends AppCompatActivity {
 
         MyPageAdapter myPageAdapter=new MyPageAdapter(getSupportFragmentManager());
         for (int i=0;i<2;i++){
-            myPageAdapter.addFragment(new fragment_price(i));
+            myPageAdapter.addFragment(new fragment_price(i,getIntent().getExtras().getString("link")));
         }
         viewPagerCust_wynk.setAdapter(myPageAdapter);
 
@@ -243,8 +243,8 @@ public class third extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (!li.isEmpty()) {
-                if (text2.length()>10){
-                    text2=text2.substring(0,10);
+                if (text2.length() > 10) {
+                    text2 = text2.substring(0, 10);
                 }
                 tx.setText(text);
                 tx1.setText(text1);
