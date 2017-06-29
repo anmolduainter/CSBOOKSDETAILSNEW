@@ -10,44 +10,43 @@ public class ViewPagerTransformer_wynk implements ViewPager.PageTransformer {
     @Override
     public void transformPage(View page, float position) {
 
-
-
-         /*  if (position<-1 || position>1){
-               page.setAlpha(0);
-           }*/
-
-         if (position==-1){
-            page.setScaleX(0.5f);
-             page.setScaleY(0.5f);
-         }
-         else if (position<0 && position>-1){
-             page.setScaleX(1f+0.5f*position);
-             page.setScaleY(1f+0.5f*position);
-           }
-
-         if (position==1){
-             page.setScaleX(0.5f);
-             page.setScaleY(0.5f);
-
-           }
-
-         if(position>=0&&position<1){
-             page.setScaleX(1f-0.5f*position);
-             page.setScaleY(1f-0.5f*position);
-
-           }
+        float pivotX=page.getWidth();
+        float pivotY=page.getHeight()/2;
 
 
 
-     /*   else if (position==1){
+        if (position==-1){
 
-               page.setTranslationX(-(page.getWidth()/2));
-               page.setScaleX(0.5f);
-               page.setScaleY(0.5f);
 
-           }
-*/
+            page.setPivotX(0f);
+            page.setPivotY(0f);
+            page.setRotationY(90);
 
+        }
+        else if (position<0 && position>-1){
+
+            page.setPivotX(pivotX);
+            page.setPivotY(pivotY);
+
+            page.setRotationY(45*position);
+        }
+
+
+        if (position==1){
+
+            page.setPivotX(0f);
+            page.setPivotY(page.getHeight()/2);
+            page.setRotationY(-90);
+
+        }
+
+        if(position>=0&&position<1){
+
+            page.setPivotX(0);
+            page.setPivotY(page.getHeight()/2);
+            page.setRotationY(45*position);
+
+        }
 
     }
 }

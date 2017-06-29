@@ -1,6 +1,7 @@
 package com.example.joginderpal.csbooksdetails.fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,22 +17,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.joginderpal.csbooksdetails.Data.Amazon;
+import com.example.joginderpal.csbooksdetails.Data.SnapDeal;
 import com.example.joginderpal.csbooksdetails.Data.eBay;
 import com.example.joginderpal.csbooksdetails.R;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -94,8 +89,10 @@ public class fragment_price extends Fragment {
 
 
             case 1:
-                Picasso.with(getActivity()).load("https://c.slashgear.com/wp-content/uploads/2017/01/ebay-sign-header.jpg").fit().into(amazonImage);
-                Glide.with(getActivity()).load("https://c.slashgear.com/wp-content/uploads/2017/01/ebay-sign-header.jpg").bitmapTransform(new BlurTransformation(getActivity(),100)).into(new SimpleTarget<GlideDrawable>() {
+                titleText.setTextColor(Color.WHITE);
+                priceText.setTextColor(Color.WHITE);
+                Picasso.with(getActivity()).load("https://upload.wikimedia.org/wikipedia/commons/6/62/Snapdeal.png").fit().into(amazonImage);
+                Glide.with(getActivity()).load("https://d28dwf34zswvrl.cloudfront.net/wp-content/uploads/2016/09/snapdeal-new-logo.png").bitmapTransform(new BlurTransformation(getActivity(),100)).into(new SimpleTarget<GlideDrawable>() {
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
@@ -151,6 +148,10 @@ public class fragment_price extends Fragment {
         String price1="";
         String title1="";
 
+        String price2="";
+        String title2="";
+
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -166,11 +167,19 @@ public class fragment_price extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+//
+//            eBay ebay=new eBay(search.replace(" ","+"));
+//            try {
+//                price1=ebay.getPrice();
+//                title1=ebay.getTitle();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
-            eBay ebay=new eBay(search.replace(" ","+"));
+           SnapDeal snapDeal=new SnapDeal(search.replace(" ","+"));
             try {
-                price1=ebay.getPrice();
-                title1=ebay.getTitle();
+                price2=snapDeal.getPrice();
+                title2=snapDeal.getTitle();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -187,9 +196,13 @@ public class fragment_price extends Fragment {
                 priceText.setText(price);
                 titleText.setText(title);
             }
+//            else if (i==1){
+//               priceText.setText(price1);
+//                titleText.setText(title1);
+//            }
             else if (i==1){
-               priceText.setText(price1);
-                titleText.setText(title1);
+                priceText.setText(price2);
+                titleText.setText(title2);
             }
         }
     }

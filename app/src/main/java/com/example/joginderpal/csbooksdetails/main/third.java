@@ -181,7 +181,7 @@ public class third extends AppCompatActivity {
 
 
         MyPageAdapter myPageAdapter=new MyPageAdapter(getSupportFragmentManager());
-        for (int i=0;i<2;i++){
+        for (int i=0;i<3;i++){
             myPageAdapter.addFragment(new fragment_price(i,getIntent().getExtras().getString("link")));
         }
         viewPagerCust_wynk.setAdapter(myPageAdapter);
